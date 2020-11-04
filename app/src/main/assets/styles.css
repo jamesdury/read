@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./Inter-Regular.ttf');
+}
+@font-face {
+    font-family: 'Metropolis';
+    src: url('./metropolis_bold.ttf');
+}
+
+* {
+    word-wrap: break-word;
+}
+
+#url {
+    background: #111111;
+    color: #EFEFEF;
+    overflow-x: scroll;
+    white-space: nowrap;
+	padding: 10px;
+}
+
+body {
+    font-family: 'Inter', Courier New;
+	background: #000000;
+	color: #f8f8f2;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+}
+
+h1#title {
+    font-family: 'Metropolis', Courier New;
+	color: #f8f8f2;
+	padding: 0 10px;
+}
+
+#content {
+	padding: 0 10px;
+    position: relative;
+}
+
+img {
+   display: inline;
+   height: auto;
+   max-width: 100%;
+}
+
+a {
+    color: #f8f8f2;
+}
+
+a:hover {
+    color: #282a36;
+    background: #f8f8f2;
+}
+
+pre {
+    padding: 10px;
+    background: #23272A;
+    color: #f8f8f2;
+    overflow: scroll;
+}

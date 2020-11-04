@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src="Readability.js"></script>
+  </head>
+  <body>
+    <h1 id="title"></h1>
+    <div id="content">loading</div>
+    <div id="url"></div>
+
+    <script type="text/javascript">
+      window.onclick = function (e) {
+        if (e.target.localName === "a") {
+          e.preventDefault();
+          Android.open(e.target.href);
+        }
+      };
+
+      function updateContent(url, content, excerpt, title) {
+        document.getElementById("content").innerHTML = content;
+        document.getElementById("title").innerHTML = title;
+        document.getElementById("url").innerHTML = url;
+
+        // these are all relative uri that will not display, I could add the domain to them
+        const list = document.getElementsByTagName("img");
+        for (let item of list) {
+          item.onerror = function () {
+            item.style.display = "none";
+          };
+        }
+      }
+
+      function request(url) {
+        fetch(url + "?dark-reader-request")
+          .then((res) => res.text())
+          .then((text) => new DOMParser().parseFromString(text, "text/html"))
+          .then((document) => new Readability(document))
+          .then((reader) => reader.parse())
+          .then(({ content, title, excerpt }) => updateContent(url, content, excerpt, title))
+          .catch((error) => Android.onError(error.message));
+      }
+    </script>
+  </body>
+</html>
